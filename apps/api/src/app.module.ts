@@ -5,9 +5,15 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UrlModule } from './url/url.module';
 import { AccountModule } from './account/account.module';
 import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', 'web', 'dist'),
+      exclude: ['api/*'],
+    }),
     ThrottlerModule.forRoot([{ ttl: 60, limit: 15 }]),
     PrismaModule,
     UrlModule,
