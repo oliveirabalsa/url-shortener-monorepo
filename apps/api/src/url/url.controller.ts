@@ -32,7 +32,7 @@ export class UrlController {
   ) {
     const createdUrl = await this.urlService.createUrl(createUrlDto, user?.id);
     const baseUrl = `${req.protocol}://${req.get('host')}`;
-    return { shortUrl: `${baseUrl}/${createdUrl.slug}` };
+    return { shortUrl: `${baseUrl}/api/${createdUrl.slug}` };
   }
 
   @Get(':slug')
