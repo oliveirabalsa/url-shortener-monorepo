@@ -4,7 +4,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import MyUrls from "./pages/MyUrls";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { ProtectedRoute } from "@/components";
 import { UserProvider } from "@/contexts/UserContext";
 const queryClient = new QueryClient();
 const App = () => {
