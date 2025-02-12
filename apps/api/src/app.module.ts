@@ -11,8 +11,8 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'web', 'dist'),
-      exclude: ['api/*'],
+      rootPath: join(__dirname, '..', 'client'),
+      exclude: ['/api*'],
     }),
     ThrottlerModule.forRoot([{ ttl: 60, limit: 15 }]),
     PrismaModule,
