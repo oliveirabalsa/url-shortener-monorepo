@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "build:web": "cd apps/web && npm run build",
-    "copy:web": "rm -rf apps/api/client && cp -r apps/web/dist apps/api/client",
+    "copy:web": "rm -rf client && cp -r apps/web/dist client",
     "build:api": "cd apps/api && nest build",
     "build": "npm run build:web && npm run copy:web && npm run build:api",
     "dev": "turbo run dev"
