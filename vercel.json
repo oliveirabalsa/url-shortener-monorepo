@@ -6,6 +6,6 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/apps/api/src/main.ts", "methods": ["GET"] }
+    { "src": "/(.*)", "dest": "/apps/api/dist/main.js", "methods": ["GET"] }
   ]
 }
