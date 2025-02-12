@@ -8,6 +8,10 @@
     "dev": "turbo run dev"
   },
   "devDependencies": {
+    "prisma": "^6.3.1",
     "turbo": "^2.4.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.3.1"
   }
 }
