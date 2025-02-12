@@ -1,15 +1,29 @@
 {
-  "builds": [
+  "version": 2,
+  "projects": [
     {
-      "src": "apps/api/dist/main.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
+      "name": "api",
+      "src": "apps/api",
+      "buildCommand": "npm run build",
+      "outputDirectory": "dist",
+      "routes": [
+        {
+          "src": "/api/(.*)",
+          "dest": "/api/$1"
+        }
+      ]
+    },
     {
-      "src": "/(.*)",
-      "dest": "/apps/api/src/main.ts",
-      "methods": ["GET"]
+      "name": "web",
+      "src": "apps/web",
+      "buildCommand": "npm run build",
+      "outputDirectory": "build",
+      "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "/$1"
+        }
+      ]
     }
   ]
 }
