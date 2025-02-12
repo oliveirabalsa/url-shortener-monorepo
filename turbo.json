@@ -1,9 +1,21 @@
 {
+  "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "dev": {
       "cache": false,
-      "persistent": true,
-      "outputs": []
+      "env": ["VITE_*", "NODE_ENV"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "env": ["VITE_*", "NODE_ENV"]
+    },
+    "start": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "env": ["VITE_*", "NODE_ENV"]
     }
-  }
+  },
+  "globalEnv": ["NODE_ENV"]
 }

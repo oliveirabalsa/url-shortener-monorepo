@@ -6,10 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build:web": "cd ../web && npm run build",
-    "copy:web": "rm -rf client && cp -r ../web/dist client",
-    "build:api": "nest build",
-    "build": "npm run build:web && npm run copy:web && npm run build:api",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",
