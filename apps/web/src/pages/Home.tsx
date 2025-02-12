@@ -1,37 +1,51 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import React, { useState, useCallback } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header";
 import { toast } from "sonner";
 import { useUser } from "@/hooks/useUser";
+import { useUrlShortener } from "@/hooks/useUrlShortener";
+import { Header } from "@/components";
+import { urlSchema } from "@/lib/schemas";
 
 const Home = () => {
   const [originalUrl, setOriginalUrl] = useState("");
-  const [shortUrl, setShortUrl] = useState("");
+  const [lastShortenedUrl, setLastShortenedUrl] = useState("");
   const { user } = useUser();
-  const token = Cookies.get("accessToken");
+  const { shortenUrl, shortUrl, isLoading } = useUrlShortener();
+  const [urlError, setUrlError] = useState("");
+
+  const isValidUrl = useCallback((url: string) => {
+    const result = urlSchema.safeParse({ url });
+    if (!result.success) {
+      setUrlError(result.error.errors[0].message);
+      return false;
+    }
+    setUrlError("");
+    return true;
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!/^https?:\/\/.+\..+/.test(originalUrl)) {
-      toast.error("Invalid URL provided");
+    if (originalUrl === lastShortenedUrl) {
       return;
     }
-    try {
-      const res = await axios.post(
-        import.meta.env.VITE_API_URL,
-        { originalUrl },
-        user ? { headers: { Authorization: `Bearer ${token}` } } : undefined
-      );
-      setShortUrl(res.data.shortUrl);
-    } catch (error: unknown) {
-      toast.error((error as Error).message || "Failed to generate URL");
+
+    if (!isValidUrl(originalUrl)) {
+      return;
     }
+
+    shortenUrl(originalUrl);
+    setLastShortenedUrl(originalUrl);
   };
+
+  const handleReset = useCallback(() => {
+    setOriginalUrl("");
+    setLastShortenedUrl("");
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {user && <Header />}
@@ -46,15 +60,41 @@ const Home = () => {
             URL Shortener
           </CardTitle>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-2">
               <Input
                 value={originalUrl}
-                onChange={(e) => setOriginalUrl(e.target.value)}
+                onChange={(e) => {
+                  setOriginalUrl(e.target.value);
+                  if (e.target.value) {
+                    isValidUrl(e.target.value);
+                  } else {
+                    setUrlError("");
+                  }
+                }}
                 placeholder="Enter URL"
+                disabled={isLoading}
+                className={urlError ? "border-red-500" : ""}
               />
-              <Button type="submit" className="w-full">
-                Shorten URL
-              </Button>
+              {urlError && (
+                <p className="text-red-500 text-sm mb-4">{urlError}</p>
+              )}
+              <div className="flex gap-2 mt-4">
+                <Button
+                  type="submit"
+                  className="flex-1"
+                  disabled={isLoading || !originalUrl}
+                >
+                  {isLoading ? "Shortening..." : "Shorten URL"}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleReset}
+                  disabled={!originalUrl && !shortUrl}
+                >
+                  Reset
+                </Button>
+              </div>
             </form>
             {shortUrl && (
               <motion.div
@@ -97,4 +137,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
