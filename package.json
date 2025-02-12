@@ -5,6 +5,10 @@
     "apps/*"
   ],
   "scripts": {
+    "build:web": "cd apps/web && npm run build",
+    "copy:web": "rm -rf apps/api/client && cp -r apps/web/dist apps/api/client",
+    "build:api": "cd apps/api && nest build",
+    "build": "npm run build:web && npm run copy:web && npm run build:api",
     "dev": "turbo run dev"
   },
   "devDependencies": {
@@ -12,6 +16,8 @@
     "turbo": "^2.4.1"
   },
   "dependencies": {
-    "@prisma/client": "^6.3.1"
+    "@nestjs/serve-static": "^5.0.2",
+    "@prisma/client": "^6.3.1",
+    "zod": "^3.24.2"
   }
 }
