@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useUser } from "@/hooks/useUser";
 
-const Header = () => {
+export const Header = () => {
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const handleLogout = () => {
@@ -23,32 +23,38 @@ const Header = () => {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full flex items-center justify-between p-4 bg-white shadow"
+      className="w-full bg-white shadow"
     >
-      <NavigationMenu>
-        <NavigationMenuList className="flex space-x-4">
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link to="/">Home</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link to="/my-urls">My URLs</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <div className="flex items-center space-x-4">
-        <Button variant="outline" onClick={handleLogout}>
-          Log out
-        </Button>
-        <Avatar>
-          <AvatarImage src="https://via.placeholder.com/40" alt="User Avatar" />
-          <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
-        </Avatar>
-      </div>
+      <section className="max-w-screen-2xl mx-auto w-full flex items-center justify-between p-4">
+        <NavigationMenu>
+          <NavigationMenuList className="flex space-x-4">
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/">Home</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/my-urls">My URLs</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="flex items-center space-x-4">
+          <Button variant="outline" onClick={handleLogout}>
+            Log out
+          </Button>
+          <Avatar>
+            <AvatarImage
+              src="https://via.placeholder.com/40"
+              alt="User Avatar"
+            />
+            <AvatarFallback>
+              {user?.name?.charAt(0).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        </div>
+      </section>
     </motion.header>
   );
 };
-export default Header;
