@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUrlDto } from './dto/create-url.dto';
-import { customAlphabet } from 'nanoid';
 
 @Injectable()
 export class UrlService {
@@ -33,6 +32,8 @@ export class UrlService {
   }
 
   private async generateUniqueSlug(): Promise<string> {
+    const { customAlphabet } = await import('nanoid/non-secure');
+
     const generateSlug = customAlphabet(
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
       6,

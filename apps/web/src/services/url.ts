@@ -15,7 +15,7 @@ export const urlService = {
     token,
   }: ShortenUrlRequest): Promise<ShortenUrlResponse> => {
     const response = await axios.post<ShortenUrlResponse>(
-      `${import.meta.env.VITE_API_URL}/api`,
+      import.meta.env.VITE_API_URL,
       { originalUrl },
       token ? { headers: { Authorization: `Bearer ${token}` } } : undefined
     );

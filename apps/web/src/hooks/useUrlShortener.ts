@@ -29,7 +29,7 @@ export const useUrlShortener = () => {
   const fetchUrls = async () => {
     const token = Cookies.get("accessToken");
     const res = await axios.get(
-      `${import.meta.env.VITE_API_URL}/api/account/urls`,
+      `${import.meta.env.VITE_API_URL}/account/urls`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
