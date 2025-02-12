@@ -12,7 +12,7 @@ import { join } from 'path';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
-      exclude: ['/api*'],
+      exclude: ['api/*'],
     }),
     ThrottlerModule.forRoot([{ ttl: 60, limit: 15 }]),
     PrismaModule,

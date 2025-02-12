@@ -9,7 +9,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
   app.useGlobalFilters(new HtmlExceptionFilter());
-  app.setGlobalPrefix('/api');
 
   const config = new DocumentBuilder()
     .setTitle('URL Shortener API')
