@@ -5,10 +5,10 @@
     "apps/*"
   ],
   "scripts": {
-    "build:web": "cd apps/web && npm run build",
     "copy:web": "rm -rf apps/api/client && cp -r apps/web/dist apps/api/client",
+    "build:web": "cd apps/web && npm run build",
     "build:api": "cd apps/api && nest build",
-    "build": "npm run build:web && npm run copy:web && npm run build:api",
+    "build": "npm run build:web && npm run build:api",
     "dev": "turbo run dev",
     "start": "turbo run start"
   },
