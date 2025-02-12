@@ -5,12 +5,9 @@
     "apps/*"
   ],
   "scripts": {
-    "copy:web": "rm -rf apps/api/client && cp -r apps/web/dist apps/api/client",
-    "build:web": "cd apps/web && npm run build",
-    "build:api": "cd apps/api && nest build",
-    "build": "npm run build:web && npm run build:api",
+    "build": "turbo run build",
     "dev": "turbo run dev",
-    "start": "node apps/api/dist/main.js"
+    "start": "turbo run start"
   },
   "devDependencies": {
     "prisma": "^6.3.1",

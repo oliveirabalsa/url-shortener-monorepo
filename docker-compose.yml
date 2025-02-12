@@ -13,3 +13,15 @@ services:
       - ./apps/api:/usr/src/app
       - /usr/src/app/node_modules
     command: npm run start
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    volumes:
+      - ./apps/web:/usr/src/app
+      - /usr/src/app/node_modules

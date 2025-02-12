@@ -22,9 +22,23 @@ export const UrlCard = (url: Url) => {
         <CardContent className="pt-4 flex items-end justify-between">
           <div>
             <div className="font-medium">
-              {url.shortUrl || `${import.meta.env.VITE_API_URL}/${url.slug}`}
+              Short URL:{" "}
+              <a
+                href={
+                  url.shortUrl || `${import.meta.env.VITE_API_URL}/${url.slug}`
+                }
+                target="_blank"
+                className="underline"
+              >
+                {url.shortUrl || `${import.meta.env.VITE_API_URL}/${url.slug}`}
+              </a>
             </div>
-            <div className="text-sm text-gray-600">{url.originalUrl}</div>
+            <div className="text-sm text-gray-600">
+              Original URL:{" "}
+              <a href={url.originalUrl} target="_blank" className="underline">
+                {url.originalUrl}
+              </a>
+            </div>
           </div>
           <Button
             variant="outline"
