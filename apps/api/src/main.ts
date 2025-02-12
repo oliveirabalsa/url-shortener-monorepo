@@ -7,7 +7,7 @@ import { HtmlExceptionFilter } from './common/filters/html-exepction.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors({ origin: 'http://localhost:8080' });
+  app.enableCors();
   app.useGlobalFilters(new HtmlExceptionFilter());
   app.setGlobalPrefix('api');
 
