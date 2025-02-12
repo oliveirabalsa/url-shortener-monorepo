@@ -10,7 +10,7 @@
     "build:api": "cd apps/api && nest build",
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "start": "node apps/api/dist/main"
+    "start": "turbo run start"
   },
   "devDependencies": {
     "prisma": "^6.3.1",
