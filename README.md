@@ -119,7 +119,8 @@ Below, you can add screenshots of the **Home Page** and **My URLs Page**:
 
 ## 🚀 Deployment & Future Improvements
 - **The project can be deployed on Vercel (frontend) and a Node.js server (backend)**.
-- **Adding analytics & URL expiration** would be future enhancements.
+- **Adding analytics & URL expiration** would be future enhancements.**
+- **Adding visits on the front-end side, back-end is working and computing the visits but front-end is not done.**
 
 ---
 
