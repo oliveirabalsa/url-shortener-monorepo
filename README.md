@@ -52,11 +52,6 @@ This will:
 
 💡 **Note:** MongoDB is NOT running in Docker. You must have a **valid MongoDB connection** in your `.env` file.
 
-If you don't have a MongoDB connection you can use this one for testing.
-```
-DATABASE_URL="mongodb+srv://leonardobalsalobre:deeporigin@cluster0.4phez.mongodb.net/deeporigin?retryWrites=true&w=majority"
-```
-
 ---
 
 ### **3️⃣ Run Without Docker (Manual Setup)**
