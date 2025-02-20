@@ -1,8 +1,5 @@
 # URL Shortener
 
-## 🏗️ Deploy
-https://url-shortener-monorepo.vercel.app/
-
 ## 📌 Overview
 This project is a **URL Shortener** built with **NestJS (backend) and Vite + React (frontend)**. It allows users to generate shortened URLs and track visits. Users can also register and log in to manage their created URLs.
 
